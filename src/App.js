@@ -1,9 +1,9 @@
 import "./App.css";
-import { useState } from "react";
+import React, { useState } from "react";
 // import "ace-builds/src-noconflict/mode";
 import axios from "axios";
 import Editor from "./components/Editor";
-import "ace-builds/webpack-resolver";
+// import "ace-builds/webpack-resolver";
 import Output from "./components/Output";
 import Input from "./components/Input";
 
