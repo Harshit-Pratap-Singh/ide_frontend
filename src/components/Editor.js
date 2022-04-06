@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/ext-language_tools";
@@ -5,17 +6,31 @@ import "ace-builds/src-noconflict/mode-c_cpp";
 import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-monokai";
+import { cppTemplate, javaTemplate, pythonTemplate } from "./CodeTemplate";
 
 function Editor({ setCode, code, textMode }) {
   const [autoComplete, setAutoComplete] = useState(false);
+  const [cpp, setCpp] = useState(cppTemplate);
+  const [python, setPython] = useState(pythonTemplate);
+  const [java, setJava] = useState(javaTemplate);
+
+  useEffect(() => setCode(cppTemplate), []);
 
   useEffect(() => {
     if (textMode === "python" || textMode === "java") setAutoComplete(true);
     else setAutoComplete(false);
+
+    if (textMode === "c_cpp") setCode(cpp);
+    if (textMode === "python") setCode(python);
+    if (textMode === "java") setCode(java);
   }, [textMode]);
 
-  const handleChange = (e) => {
-    setCode(e);
+  const handleChange = (v) => {
+    if (textMode === "c_cpp") setCpp(v);
+    if (textMode === "python") setPython(v);
+    if (textMode === "java") setJava(v);
+    setCode(v);
+
     // console.log(textMode);
   };
 
@@ -33,6 +48,7 @@ function Editor({ setCode, code, textMode }) {
         fontSize={16}
         highlightActiveLine={true}
         enableLiveAutocompletion={autoComplete}
+        value={code}
       />
     </div>
   );

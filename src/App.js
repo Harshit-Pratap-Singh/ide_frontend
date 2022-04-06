@@ -43,7 +43,7 @@ function App() {
     if (e.target.value === "py") setTextMode("python");
     if (e.target.value === "java") {
       setTextMode("java");
-      alert("Write the class name as Main!!!");
+      //alert("Write the class name as Main!!!");
     }
     // console.log(textMode);
   };
