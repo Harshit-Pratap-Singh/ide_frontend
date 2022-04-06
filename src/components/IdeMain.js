@@ -7,6 +7,7 @@ import Editor from "./Editor";
 import Output from "./Output";
 import Input from "./Input";
 import arrow from "./assets/next.png";
+import $ from "jquery";
 
 function IdeMain() {
   const [code, setCode] = useState();
@@ -23,27 +24,32 @@ function IdeMain() {
   };
   const handleSubmit = async (e) => {
     if (code === undefined) return alert("Empty code\n");
-    e.target.innerHTML = "Running";
-    e.target.disabled = true;
-    const data = {
-      language,
-      code,
-      input,
-    };
-    console.log("Input-->", input);
-    try {
-      const output = await axios.post(
-        "https://ide-backend-hps.herokuapp.com/run",
-        data
-      );
-      console.log(output.data.output);
-      setOutput(output.data.output);
-    } catch (err) {
-      setOutput(err?.response?.data?.stderr);
-      console.log(err?.response?.data?.stderr);
+    // console.log($(".submit_btn"));
+
+    if (e.type === "click" || (e.key === `'` && e.metaKey)) {
+      $(".submit_btn").html("Running");
+      $(".submit_btn").prop("disabled", true);
+
+      const data = {
+        language,
+        code,
+        input,
+      };
+      console.log("Input-->", input);
+      try {
+        const output = await axios.post(
+          "https://ide-backend-hps.herokuapp.com/run",
+          data
+        );
+        console.log(output.data.output);
+        setOutput(output.data.output);
+      } catch (err) {
+        setOutput(err?.response?.data?.stderr);
+        console.log(err?.response?.data?.stderr);
+      }
+      $(".submit_btn").prop("disabled", false);
+      $(".submit_btn").html("Run");
     }
-    e.target.disabled = false;
-    e.target.innerHTML = "Run";
   };
 
   // const handleSelect = (e) => {
@@ -72,7 +78,7 @@ function IdeMain() {
   };
 
   return (
-    <div className="App">
+    <div className="App" onKeyDownCapture={handleSubmit}>
       <div className="navbar">
         <div className="button_container">
           <button className="submit_btn" onClick={handleSubmit}>
@@ -108,11 +114,7 @@ function IdeMain() {
       </div>
 
       <div className="container">
-        <Editor
-          code={code}
-          setCode={setCode}
-          textMode={textMode}
-        />
+        <Editor code={code} setCode={setCode} textMode={textMode} />
         <div className="io_container">
           <Output outputValue={output} setOutputValue={setOutput} />
           <Input setInputValue={setInput} />
