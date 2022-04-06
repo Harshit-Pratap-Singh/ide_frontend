@@ -94,7 +94,12 @@ function IdeMain() {
             <option value="java">JAVA</option>
           </select> */}
 
-          <div className="dropdownMenu" onClick={() => setToggle(!toggle)}>
+          <div
+            tabIndex="1"
+            className="dropdownMenu"
+            onClick={() => setToggle(!toggle)}
+            onBlur={() => setToggle(false)}
+          >
             <span>{activeDrop}</span>
             <img
               className={`arrow ${toggle && "upArrow"}`}
