@@ -1,17 +1,17 @@
 import React from "react";
 import AceEditor from "react-ace";
 
+import "./Output.css";
+
 function Output({ outputValue, setOutputValue }) {
   return (
     <div className="output_container">
-      <h3>Output</h3>
+      <p className="inputHeading">Output</p>
       <AceEditor
         mode="text"
         theme="monokai"
-        name="UNIQUE_ID_OF_DIV"
+        name="output"
         editorProps={{ $blockScrolling: true }}
-        height="31vh"
-        width="40vw"
         fontSize={16}
         value={outputValue}
         onChange={(e) => setOutputValue(e)}

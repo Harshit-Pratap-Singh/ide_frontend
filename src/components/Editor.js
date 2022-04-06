@@ -7,6 +7,7 @@ import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-monokai";
 import { cppTemplate, javaTemplate, pythonTemplate } from "./CodeTemplate";
+import "./Editor.css";
 
 function Editor({ setCode, code, textMode }) {
   const [autoComplete, setAutoComplete] = useState(false);
@@ -35,16 +36,14 @@ function Editor({ setCode, code, textMode }) {
   };
 
   return (
-    <div className="editor">
-      <h3>Code</h3>
+    <div className="editor_container">
+      {/* <p className="">Code</p> */}
       <AceEditor
         mode={textMode}
         theme="monokai"
         onChange={handleChange}
-        name="UNIQUE_ID_OF_DIV"
+        name="editor"
         editorProps={{ $blockScrolling: true }}
-        height="70vh"
-        width="60vw"
         fontSize={16}
         highlightActiveLine={true}
         enableLiveAutocompletion={autoComplete}

@@ -1,19 +1,19 @@
 import React from "react";
 import AceEditor from "react-ace";
+import "./Input.css";
 
 function Input({ setInputValue }) {
   return (
     <div className="input_container">
-      <h3>Input</h3>
+      <p className="inputHeading">Input</p>
       <AceEditor
         mode="text"
         theme="monokai"
-        name="UNIQUE_ID_OF_DIV"
+        name="input"
         editorProps={{ $blockScrolling: true }}
-        height="31vh"
-        width="40vw"
         fontSize={16}
         onChange={(e) => setInputValue(e)}
+        placeholder="Enter Input"
       />
     </div>
   );
