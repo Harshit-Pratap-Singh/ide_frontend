@@ -17,6 +17,8 @@ function IdeMain() {
   const [textMode, setTextMode] = useState("c_cpp");
   const [toggle, setToggle] = useState(false);
   const [activeDrop, setActiveDrop] = useState("C++");
+  const [fontSize, setFontSize] = useState(16);
+
   const dict = {
     "C++": "cpp",
     PYTHON: "py",
@@ -35,7 +37,7 @@ function IdeMain() {
         code,
         input,
       };
-      console.log("Input-->", input);
+      // console.log("Input-->", input);
       try {
         const output = await axios.post(
           "https://ide-backend-hps.herokuapp.com/run",
@@ -66,7 +68,7 @@ function IdeMain() {
   // };
 
   const handleoptions = (e) => {
-    console.log(e.target.innerHTML);
+    // console.log(e.target.innerHTML);
     setActiveDrop(e.target.innerHTML);
     setLanguage(dict[e.target.innerHTML]);
     // console.log(e.target.innerHTML);
@@ -75,6 +77,11 @@ function IdeMain() {
     if (e.target.innerHTML === "PYTHON") setTextMode("python");
     if (e.target.innerHTML === "JAVA") setTextMode("java");
     //alert("Write the class name as Main!!!");
+  };
+
+  const handleFontSize = (e) => {
+    setFontSize(Number(e.target.value));
+    console.log(Number(e.target.value));
   };
 
   return (
@@ -112,6 +119,18 @@ function IdeMain() {
               <p onClick={handleoptions}>JAVA</p>
             </div>
           </div>
+          <div className="font_container">
+            <label htmlFor="fontSize" className="fontLable">
+              Size:
+            </label>
+            <input
+              type="number"
+              name="fontSize"
+              className="fontSizeInput"
+              defaultValue={16}
+              onChange={handleFontSize}
+            />
+          </div>
         </div>
         <div className="heading">
           <span>IDE</span>
@@ -119,10 +138,19 @@ function IdeMain() {
       </div>
 
       <div className="container">
-        <Editor code={code} setCode={setCode} textMode={textMode} />
+        <Editor
+          code={code}
+          setCode={setCode}
+          textMode={textMode}
+          fontSiz={fontSize}
+        />
         <div className="io_container">
-          <Output outputValue={output} setOutputValue={setOutput} />
-          <Input setInputValue={setInput} />
+          <Output
+            outputValue={output}
+            setOutputValue={setOutput}
+            fontSiz={fontSize}
+          />
+          <Input setInputValue={setInput} fontSiz={fontSize} />
         </div>
       </div>
     </div>

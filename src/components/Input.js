@@ -2,7 +2,7 @@ import React from "react";
 import AceEditor from "react-ace";
 import "./Input.css";
 
-function Input({ setInputValue }) {
+function Input({ setInputValue, fontSiz }) {
   return (
     <div className="input_container">
       <p className="inputHeading">Input</p>
@@ -11,7 +11,7 @@ function Input({ setInputValue }) {
         theme="monokai"
         name="input"
         editorProps={{ $blockScrolling: true }}
-        fontSize={16}
+        fontSize={fontSiz}
         onChange={(e) => setInputValue(e)}
         placeholder="Enter Input"
       />

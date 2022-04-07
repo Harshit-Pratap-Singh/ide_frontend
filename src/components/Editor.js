@@ -9,7 +9,7 @@ import "ace-builds/src-noconflict/theme-monokai";
 import { cppTemplate, javaTemplate, pythonTemplate } from "./CodeTemplate";
 import "./Editor.css";
 
-function Editor({ setCode, code, textMode }) {
+function Editor({ setCode, code, textMode, fontSiz }) {
   const [autoComplete, setAutoComplete] = useState(false);
   const [cpp, setCpp] = useState(cppTemplate);
   const [python, setPython] = useState(pythonTemplate);
@@ -44,7 +44,7 @@ function Editor({ setCode, code, textMode }) {
         onChange={handleChange}
         name="editor"
         editorProps={{ $blockScrolling: true }}
-        fontSize={16}
+        fontSize={fontSiz}
         highlightActiveLine={true}
         enableLiveAutocompletion={autoComplete}
         value={code}

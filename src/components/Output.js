@@ -3,7 +3,7 @@ import AceEditor from "react-ace";
 
 import "./Output.css";
 
-function Output({ outputValue, setOutputValue }) {
+function Output({ outputValue, setOutputValue, fontSiz }) {
   return (
     <div className="output_container">
       <p className="inputHeading">Output</p>
@@ -12,10 +12,11 @@ function Output({ outputValue, setOutputValue }) {
         theme="monokai"
         name="output"
         editorProps={{ $blockScrolling: true }}
-        fontSize={16}
+        fontSize={fontSiz}
         value={outputValue}
         onChange={(e) => setOutputValue(e)}
         wrapEnabled={true}
+        placeholder="Press cmd + ' or ctrl + ' to run"
       />
     </div>
   );

@@ -46,7 +46,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-width: 10vw;
+  min-width: 20vw;
 }
 
 .submit_btn{
@@ -76,6 +76,7 @@
   font-size: 1rem;
   letter-spacing: 1px;
   position: relative;
+  margin-right: 20px;
 }
 
 .dropOptions{
@@ -135,10 +136,55 @@
 }
 
 .inputHeading {
- font-family: 'Grape Nuts', cursive;
+ font-family: 'Roboto';
  font-size: 1.5rem;
  font-weight: 600;
  background-color: #383838;
  padding: 5px 20px;
  color: #5cc9c7 ;
+ /* letter-spacing: 4px; */
+
+}
+
+.font_container{
+  display: flex;
+  align-items: center ;
+}
+
+.fontSizeInput{
+  font-size: 1rem;
+  font-family: "Roboto";
+  width: 4rem;
+  padding:  5px 10px;
+  border: none;
+  background-color: #212121;
+  color: white;
+  border-bottom: 2px solid #459a99;
+  text-align: center;
+}
+
+.fontSizeInput:focus{
+ outline: none;
+}
+
+.fontSizeInput::-webkit-outer-spin-button,
+.fontSizeInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.fontSizeInput[type=number] {
+  -moz-appearance: textfield;
+}
+
+.fontLable{
+ font-family: "Roboto";
+ font-size: 1.2rem;
+  /* padding: 10px; */
+  color: #54bab9  ;
+  padding: 10px;
+  letter-spacing: 2px;
+  font-weight: 600;
+
 }
