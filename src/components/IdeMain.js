@@ -1,5 +1,5 @@
 import "./IdeMain.css";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 // import "ace-builds/src-noconflict/mode";
 import axios from "axios";
 import Editor from "./Editor";
@@ -18,6 +18,8 @@ function IdeMain() {
   const [toggle, setToggle] = useState(false);
   const [activeDrop, setActiveDrop] = useState("C++");
   const [fontSize, setFontSize] = useState(16);
+  const running = useRef();
+  running.current = false;
 
   const dict = {
     "C++": "cpp",
@@ -27,8 +29,13 @@ function IdeMain() {
   const handleSubmit = async (e) => {
     if (code === undefined) return alert("Empty code\n");
     // console.log($(".submit_btn"));
-
-    if (e.type === "click" || (e.key === `'` && e.metaKey)) {
+    console.log(!running.current);
+    if (
+      e.type === "click" ||
+      (e.key === `'` && (e.metaKey || e.ctrlKey) && !running.current)
+    ) {
+      running.current = true;
+      console.log("pppppp");
       $(".submit_btn").html("Running");
       $(".submit_btn").prop("disabled", true);
 
@@ -51,6 +58,7 @@ function IdeMain() {
       }
       $(".submit_btn").prop("disabled", false);
       $(".submit_btn").html("Run");
+      running.current = !true;
     }
   };
 
