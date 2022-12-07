@@ -47,7 +47,7 @@ function IdeMain() {
       // console.log("Input-->", input);
       try {
         const output = await axios.post(
-          "https://ide-backend-hps.herokuapp.com/run",
+          "https://ide-backend.onrender.com/run",
           data
         );
         console.log(output.data.output);
